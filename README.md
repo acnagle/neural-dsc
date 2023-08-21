@@ -1,5 +1,5 @@
-## Setup
-### Installation
+# Setup
+## Installation
 We use [Anaconda](https://www.anaconda.com/products/individual) for managing Python environment.
 ```shell
 conda env create --file environment.yml
@@ -10,20 +10,22 @@ HOROVOD_GPU_OPERATIONS=NCCL pip install --upgrade --no-cache-dir "horovod[pytorc
 
 ----
 
-## Experiments
+# Experiments
 
-### Activate the environment
+## Activate the environment
 ```shell
 conda activate neural_dsc
 ```
 
-### KITTI Stereo
+## Experiment 1: KITTI Stereo
 KITTI Stereo experiments (as shown in Figure 2) can be reproduced by executing the run-kitti.sh script. 
 
 NOTE: Please contact the corresponding author at `acnagle@utexas.edu` for more information on gathering the KITTI dataset.
 
-### VQ-VAE comparison with DISCUS
+## Experiment 2: VQ-VAE comparison with DISCUS
 Training the VQ-VAE on Bernoulli sequences (as shown in Figure 6) can be reproduced by executing the `run-discus.sh` script. Note that the LDPC code is implemented in MATLAB. The script to gather the LDPC results can be found in the `baseline/nonlearning/` directory. This MATLAB script saves its results into a `iid_flip.csv` file.
+
+## Experiment 3: CelebA-HQ
 
 ### Prepare data (CelebA-HQ 256x256)
 Download `celeba-tfr.tar` inside `data/` directory, then run the following command:
@@ -53,7 +55,7 @@ horovodrun -n 2 python run_top.py eval --batch_size 250 \
 checkpoints/celebahq256_vqvae_{joint,dist,separate}_4bit/ckpt_ep=020_step=0016880.pt
 ```
 
-### Plot rate-distortion curves from eval results
+## Plot rate-distortion curves from eval results for experiments 1 through 3
 All generated plots will be stored in the folder `paper/`.
 ```shell
 python plot_rd_curves.py
@@ -61,12 +63,7 @@ python plot_rd_curves.py
 
 ----
 
-## Experiment 2: Distributed SGD
-
-### Activate environment
-```shell
-conda activate neural_dsc
-```
+## Experiment 4: Distributed SGD
 
 ### Prepare data
 ```shell
